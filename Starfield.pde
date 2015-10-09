@@ -1,7 +1,8 @@
 //your code here
 void setup()
 {
-	//your code here
+	size(600,600)
+	background(0);
 }
 void draw()
 {
@@ -9,7 +10,24 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	int rgb;
+	double x,y,speed,angle;
+	NormalParticle(){	
+		x = 300;
+		y = 300;
+		speed = 3;
+		rbg = color (212,0,0)
+	}
+
+	void move(){
+	}
+
+	void show(){
+		noStroke();
+		fill(rgb);
+		ellipse((float)x,(float)y,10,10);
+	}
+
 }
 interface Particle
 {
