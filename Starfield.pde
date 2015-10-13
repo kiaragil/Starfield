@@ -1,40 +1,64 @@
-//your code here
-void setup()
-{
-	size(600,600)
-	background(0);
+Particle[] mjolnir;
+
+void setup(){
+	size(600,600);
+	mjolnir = new Particle[100];
+	for(int i=0; i<mjolnir.length; i++)
+	{
+		mjolnir[i] = new NormalParticle();
+	}
 }
-void draw()
-{
-	//your code here
+
+void draw(){
+	fill(0,0,0,60);
+	rect(0,0,600,600);
+	for(int j=0; j<mjolnir.length; j++){
+		mjolnir[j].move();
+		mjolnir[j].show();
+	}
 }
-class NormalParticle
-{
+
+class NormalParticle implements Particle{
 	int rgb;
-	double x,y,speed,angle;
+	double x,y,speed,angle, dTheta, dSpeed;
+	
 	NormalParticle(){	
 		x = 300;
 		y = 300;
-		speed = 3;
-		rbg = color (212,0,0)
+		rgb = color ((int)(Math.random()*255+1),0,0);
+		dTheta = Math.random()*PI*70;
+		dSpeed = Math.random()*1+1;
 	}
 
-	void move(){
+	public void move(){
+		x = x+Math.cos(dTheta)*dSpeed;
+		y = y+Math.sin(dTheta)*dSpeed;
+		
+		if (x > 600 || x < 0){
+			x = 300;
+			y = 300;
+		}
+
+		if (y > 600 || y < 0){
+			x = 300;
+			y = 300;
+		}
 	}
 
-	void show(){
+	public void show(){
 		noStroke();
-		fill(rgb);
-		ellipse((float)x,(float)y,10,10);
+		fill((int)(Math.random()*255+1),(int)(Math.random()*255+1),0);
+		ellipse((float)x,(float)y,4,4);
 	}
 
 }
-interface Particle
-{
-	//your code here
+interface Particle{
+
+	public void move();
+	public void show();
 }
-class OddballParticle //uses an interface
-{
+
+class OddballParticle{
 	//your code here
 }
 class JumboParticle //uses inheritance
