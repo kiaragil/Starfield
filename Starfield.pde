@@ -6,6 +6,7 @@ void setup(){
 	for(int i=0; i<mjolnir.length; i++)
 	{
 		mjolnir[i] = new NormalParticle();
+		mjolnir[5] = new JumboParticle();
 	}
 }
 
@@ -20,12 +21,11 @@ void draw(){
 
 class NormalParticle implements Particle{
 	int rgb;
-	double x,y,speed,angle, dTheta, dSpeed;
-	
+	double x,y,speed,angle, dTheta, dSpeed;	
 	NormalParticle(){	
 		x = 300;
 		y = 300;
-		rgb = color ((int)(Math.random()*255+1),0,0);
+		rgb = color ((int)(Math.random()*255+1),(int)(Math.random()*255+1),0);
 		dTheta = Math.random()*PI*70;
 		dSpeed = Math.random()*1+1;
 	}
@@ -47,7 +47,7 @@ class NormalParticle implements Particle{
 
 	public void show(){
 		noStroke();
-		fill((int)(Math.random()*255+1),(int)(Math.random()*255+1),0);
+		fill(rgb);
 		ellipse((float)x,(float)y,4,4);
 	}
 
@@ -61,8 +61,18 @@ interface Particle{
 class OddballParticle{
 	//your code here
 }
-class JumboParticle //uses inheritance
-{
-	//your code here
-}
+
+class JumboParticle extends NormalParticle{
+
+
+	JumboParticle(){
+
+	}
+	public void show()
+	{
+		noStroke();
+		fill (rgb);
+		ellipse((float)x,(float)y,20,20);
+	}
+} //uses inheritance
 
