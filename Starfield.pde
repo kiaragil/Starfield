@@ -7,6 +7,7 @@ void setup(){
 	{
 		mjolnir[i] = new NormalParticle();
 		mjolnir[5] = new JumboParticle();
+		mjolnir[6] = new OddballParticle();
 	}
 }
 
@@ -58,12 +59,33 @@ interface Particle{
 	public void show();
 }
 
-class OddballParticle{
-	//your code here
+class OddballParticle implements Particle{
+	double dX, dY, speedX, speedY;
+	OddballParticle() {
+		dX = 300;
+		dY = 300;
+		speedX = Math.random()*11 - 5;
+		speedY = Math.random()*11 - 5;
+	}
+	public void move() {
+		speedX = Math.random()*11 - 5;
+		speedY = Math.random()*11 - 5;
+		if(dX <= 0 || dX >= 600 || dY <= 0 || dY >= 600) {
+			dX = 300;
+			dY =300;
+		}
+		else {
+			dX = dX + speedX;
+			dY = dY + speedY;
+		}
+	}
+	public void show() {
+		fill(0, (int)(Math.random()*255+1), (int)(Math.random()*255+1));
+		ellipse((float)dX, (float)dY, 15, 15);
+	}
 }
 
 class JumboParticle extends NormalParticle{
-
 
 	JumboParticle(){
 
@@ -71,8 +93,8 @@ class JumboParticle extends NormalParticle{
 	public void show()
 	{
 		noStroke();
-		fill (rgb);
-		ellipse((float)x,(float)y,20,20);
+		fill (134,255,0);
+		ellipse((float)x,(float)y,50,50);
 	}
-} //uses inheritance
+}
 
